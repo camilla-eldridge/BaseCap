@@ -1,8 +1,9 @@
 Basecap
 
-Read QC pipeline for popualtion data...
 
-Coming soon....
+Created during my PhD work at Kingston Univeristy, Basecap is a read QC pipeline for population data...coming soon....
+
+
 
 <br /> <br /> <br />
 
