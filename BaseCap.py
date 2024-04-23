@@ -352,8 +352,8 @@ for filename in os.listdir(Directory):
 #elapsed_time = time.time() - start_time
 
 # test 
-#Directory="/Users/camillaeldridge/Dropbox/Basecap_dev/test-reads/cd63/"#sys.argv[1] 
-#Primers= "/Users/camillaeldridge/Dropbox/Basecap_dev/test-reads/cd63_primers.txt" #sys.argv[2]
+#Directory="cd63/"#sys.argv[1] 
+#Primers= "cd63_primers.txt"#sys.argv[2]
 #Threshold=25 #sys.argv[3]
 
         
