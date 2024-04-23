@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Basecall and trim
 ab1_dir="$1"
 primers="$2"
 threshold="$3"
 gene_name="$4"
 
+# Bash script for workflow.
 
 # remove empty lines in primer file..
 sed -i '/^$/d' "$primers"
