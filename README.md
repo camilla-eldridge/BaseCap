@@ -21,7 +21,7 @@ To solve this BaseCap performs the following:
 
 **Score indexing:**
 
-<img src="https://github.com/camilla-eldridge/Basecap/blob/main/basecap.jpg" width="800" height="700">
+<img src="https://github.com/camilla-eldridge/Basecap/blob/main/basecap.jpg" width="750" height="600">
 
 
  <br /> <br /> <br />
