@@ -4,6 +4,28 @@
 `BaseCap.py` is a read QC program for sanger reads, created during my PhD at Kingston University.  <br /> <br /> <br />
 
 
+
+## Background
+In both first generation and next generation sequencing methods (NGS) DNA bases are assigned a quality score, known as a Phred score, by base caller programs that analyse the output from sequencing machines. In Sanger sequencing Phred quality scores are assigned based on peak spacing, peak resolution and peak ratios from sequence chromatograms. 
+
+Phred scores, also known as Q scores, represent the probability of an error in the assigned base and are defined by the equation below:
+
+      Q = - 10 log10 Pr (observed allele ≠ true allele)
+
+Phred quality scores above 20 represent a 1% chance a base has been called incorrectly and indicate 99% accuracy in the called base. 
+
+
+
+<img src="" width="750" height="600">
+
+
+
+
+Many read filtering pipelines use this threshold to initially remove low scoring reads from a dataset. In addition, to improve sequence quality and increase read-length, amplicons are usually sequenced bi-directionally using a forward and reverse primer, and merged to a final product.
+
+
+
+
 **Problem:**  
 
 - Trawling through 100+ sanger sequence chromatograms takes time.
@@ -15,7 +37,7 @@ To solve this BaseCap performs the following:
 * Incorporates trimming recommendations from `tracetuner`.  
 * Indexes quality scores whilst trimming and identifying primer sequence.
 * Determines the best place to trim to minimise sequence loss.  
-* Capitalises bases below a score threshold in the fasta sequence.  
+* Capitalises bases below a phred score threshold in the fasta sequence.  
 * Outputs a `.qual` file associated with the trimmed fasta file. <br /> <br /> <br />
 
 
@@ -31,14 +53,14 @@ To solve this BaseCap performs the following:
 ## Usage  
 
 `BaseCap.py` is run on the commandline and takes 3 arguments: 
-1. Directory of phd files
-2. Primer sequence file
+1. Directory of phd files.
+2. Primer sequence file.
 3. Phred score threshold.
 
              BaseCap.py phd_directory primer_sequence score_threshold
    
 
-The primer sequences should be in a text file in the same format as the example below:
+The primer sequences should be in a text file in fasta format, as shown in the example below:
 
     >F
     cggagcatgtaccaaaaatac
@@ -61,9 +83,9 @@ The following dependancies are required:
 The pipeline `basecap.sh` uses tracetuner for basecalling sanger reads, BaseCap.py for QC trimming and generation of trimmed .qual files, and finally CAP3 for merging.
 
 Test files provided: 
-- `ab1` files  
-- `phd.1` files  
-- primer sequence  
+- `ab1` files.  
+- `phd.1` files.  
+- primer sequence.  
 
 
 <br /> <br /> <br />
@@ -73,8 +95,8 @@ Test files provided:
 **Summary table**  
 The summary table is in csv format and gives information such as:  
 
-1.Was the read trimmed (0 or 1).  
-2.Where it was trimmed (start and stop).  
+1.Was the read trimmed (0 or 1)?  
+2.Trimming positions (start and stop).  
 3.The length of the read before and after trimming.  
 4.If the primer sequence was found in the read sequence.   
 
@@ -92,7 +114,9 @@ The summary table is in csv format and gives information such as:
 
 **Viewing capitalised bases in sequences**  
 
-When viewing sequences in an alignment viewer we now manke a more informed decision.If our SNPs represent real variation or are a result of sequencing errors.  
+With low scoring bases capitalised we can now make a more informed decision about our SNPs by viewing sequences them in an alignment viewer. 
+If our SNPs represent real variation they will likely be in lower case, if they are a result of sequencing errors we should see them in uppercase.
+
 **(A)** illustrates we have alleleic variation and the low scoring base `G` is more likely to represent real variation.  
 In **(B)** we see an SNP `T` within a region of low scoring bases that looks more likely to be a sequencing artefact.  
 
@@ -108,7 +132,7 @@ If you use this program in your work please cite as:
 Eldridge, C., Majoros, G., Cook, R.T., Kidd, D., Emery, A.M., Lawton, S.P. (2021). BaseCap: A read QC program for Sanger reads [Software]. Unpublished.  
 
 
-If you use the pipeline in your work, please also cite the authors of the tools:  
+If you use the pipeline in your work, please also cite the authors of these tools:  
 
 **TraceTuner**  
 G.A.Denisov, A.B.Arehart and M.D.Curtin (2004). A system and method 
