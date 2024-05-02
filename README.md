@@ -1,7 +1,7 @@
 # BaseCap 
 ============== 
 
-`BaseCap.py` is a read QC program for sanger reads, created during my PhD at Kingston University.  <br /> <br /> <br />
+`BaseCap.py` is a read QC program for sanger reads, created during my PhD at Kingston University (thesis available soon here: https://eprints.kingston.ac.uk/id/eprint/53583/).  <br /> <br /> <br />
 
 
 
