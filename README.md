@@ -6,42 +6,44 @@
 
 
 ## Background
-In both first generation and next generation sequencing methods (NGS) DNA bases are assigned a quality score, known as a Phred score, by base caller programs that analyse the output from sequencing machines. In Sanger sequencing Phred quality scores are assigned based on peak spacing, peak resolution and peak ratios from sequence chromatograms. 
+In both first generation and next generation sequencing methods (NGS) DNA bases are assigned a quality score, known as a Phred score, by base caller programs that analyse the output from sequencing machines. In Sanger sequencing Phred quality scores are assigned based on peak spacing, peak resolution and peak ratios from sequence chromatograms. As a result the quality of a sequence can be assessed by eye when viewing the sequence chromatogram.  
+
+Example of a sanger sequence chromatogram:  
+![image](https://github.com/camilla-eldridge/BaseCap/assets/12966869/2ab1af0f-8b73-46d3-a457-e7147d5c5ee5)
+
+Image taken from here: https://www.azenta.com/blog/analyzing-sanger-sequencing-data  <br /> <br /> <br />
+
 
 Phred scores, also known as Q scores, represent the probability of an error in the assigned base and are defined by the equation below:
 
       Q = - 10 log10 Pr (observed allele ≠ true allele)
 
-Phred quality scores above 20 represent a 1% chance a base has been called incorrectly and indicate 99% accuracy in the called base. 
+Phred quality scores above 20 represent a 1% chance a base has been called incorrectly and indicate 99% accuracy in the called base. Generally, bases with a phred or Q score < 20 are likely to have a weak signal and/or high noise. Many read filtering pipelines use this threshold to initially remove low scoring reads from a dataset. In addition, to improve sequence quality and increase read-length, amplicons are usually sequenced bi-directionally using a forward and reverse primer, and merged to a final product.
 
 
 
-<img src="" width="750" height="600">
+<img src="https://github.com/camilla-eldridge/BaseCap/blob/main/phred_scores_explanation.png" width="600" height="800">
+
+ <br /> <br /> <br />
 
 
+## Problem:  
+- In sanger read QC pipelines usually only low scoring bases are trimmed from the sequence ends, but information on the low scoring bases within the sequence are lost.
+- This information is important as a single low scoring base could be mis-interpreted as an SNP.
+- if we are scanning 100+ sequences we do not want to manually go through the chromatograms to assess each suspected SNP.  <br /> <br /> <br />
 
-
-Many read filtering pipelines use this threshold to initially remove low scoring reads from a dataset. In addition, to improve sequence quality and increase read-length, amplicons are usually sequenced bi-directionally using a forward and reverse primer, and merged to a final product.
-
-
-
-
-**Problem:**  
-
-- Trawling through 100+ sanger sequence chromatograms takes time.
-- It's difficult to identify if SNPs are sequencing artefacts (low scoring bases) or if they represent true variation (alleles) after the QC process.  <br /> <br /> <br />
-
-**Solution:**  
+## Solution: 
 
 To solve this BaseCap performs the following:  
-* Incorporates trimming recommendations from `tracetuner`.  
-* Indexes quality scores whilst trimming and identifying primer sequence.
+* Incorporates the standard end trimming recommendations from `tracetuner`.  
+* Indexes quality scores whilst trimming ends and identifying primer sequence.
 * Determines the best place to trim to minimise sequence loss.  
 * Capitalises bases below a phred score threshold in the fasta sequence.  
-* Outputs a `.qual` file associated with the trimmed fasta file. <br /> <br /> <br />
+* Outputs a `.qual` file associated with the trimmed fasta file so that you can merge with phred scores information in CAP3. <br /> <br /> <br />
 
 
-**Score indexing:**
+## Score indexing:
+The logic of score indexing is illustrated below:
 
 <img src="https://github.com/camilla-eldridge/Basecap/blob/main/basecap.jpg" width="750" height="600">
 
@@ -117,7 +119,7 @@ The summary table is in csv format and gives information such as:
 With low scoring bases capitalised we can now make a more informed decision about our SNPs by viewing sequences them in an alignment viewer. 
 If our SNPs represent real variation they will likely be in lower case, if they are a result of sequencing errors we should see them in uppercase.
 
-**(A)** illustrates we have alleleic variation and the low scoring base `G` is more likely to represent real variation.  
+**(A)** illustrates we have alleleic variation and the low scoring base `G` is more likely to represent real variation (so it could just be a little noisy).  
 In **(B)** we see an SNP `T` within a region of low scoring bases that looks more likely to be a sequencing artefact.  
 
 ![alt text](https://github.com/camilla-eldridge/Basecap/blob/main/manual-edit.jpg)
