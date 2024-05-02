@@ -119,7 +119,8 @@ The summary table is in csv format and gives information such as:
 With low scoring bases capitalised we can now make a more informed decision about our SNPs by viewing sequences them in an alignment viewer. 
 If our SNPs represent real variation they will likely be in lower case, if they are a result of sequencing errors we should see them in uppercase.
 
-**(A)** illustrates we have alleleic variation and the low scoring base `G` is more likely to represent real variation (so it could just be a little noisy).  
+**(A)** illustrates we have alleleic variation and the low scoring base `G` is more likely to represent real variation. 
+So it could just be a little noisy and that may be in part due to the existance of alternative alleles eg the individual sequence may be heterogenous.   
 In **(B)** we see an SNP `T` within a region of low scoring bases that looks more likely to be a sequencing artefact.  
 
 ![alt text](https://github.com/camilla-eldridge/Basecap/blob/main/manual-edit.jpg)
