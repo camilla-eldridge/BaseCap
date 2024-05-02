@@ -84,11 +84,22 @@ The following dependancies are required:
 ## Read QC Workflow  
 The pipeline `basecap.sh` uses tracetuner for basecalling sanger reads, BaseCap.py for QC trimming and generation of trimmed .qual files, and finally CAP3 for merging.
 
-Test files provided: 
+**A note on TraceTuner commands**  
+Trace tuner is called with the `-recalln` to reduce the affect of miscalled bases, heterogenous base calls can also be called by ttuner *note the version of BaseCap published here does no include assesing het base calls (please refer to the thesis for further info).  
+
+      #call het bases (for homo/heterozyg info)
+      ttuner -3730 -het -trim_threshold "$threshold" -id "$ab1_dir" -pd \
+      "$dir"/"$gene_name" -tabd "$dir"/"$gene_name" -Q
+
+      #call all bases
+      ttuner -3730 -trim_threshold "$threshold" -id "$ab1_dir" -pd "$dir"/"$gene_name" -recalln -Q 
+
+
+**Test files**  
+If you want to try out the entire workflow there are test files available for:
 - `ab1` files.  
 - `phd.1` files.  
-- primer sequence.  
-
+- primer sequence.   
 
 <br /> <br /> <br />
   
