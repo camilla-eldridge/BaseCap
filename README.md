@@ -143,7 +143,7 @@ In **(B)** we see an SNP `T` within a region of low scoring bases that looks mor
 
 If you use this program in your work please cite as:  
 
-Eldridge, C., Majoros, G., Cook, R.T., Kidd, D., Emery, A.M., Lawton, S.P. (2021). BaseCap: A read QC program for Sanger reads [Software]. Unpublished.  
+Eldridge, C.J.L, Majoros, G., Cook, R.T., Kidd, D., Emery, A.M., Lawton, S.P. (2021). BaseCap: A read QC program for Sanger reads [Software]. Unpublished.  
 
 
 If you use the pipeline in your work, please also cite the authors of these tools:  
