@@ -1,1 +1,2 @@
-*.roff linguist-detectable=false
+*.ab1 linguist-language=text
+*.phd.1 linguist-language=text
