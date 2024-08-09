@@ -185,8 +185,7 @@ class Main(object):
         trimmed_length = len(self.trimmed_seq) if self.check else len(self.sequence)
 
         summary_vars = [
-            self.ID, self.check, self.start, self.stop,
-            len(self.sequence), trimmed_length,
+            self.ID, self.check,len(self.sequence), trimmed_length,
             self.trim_start, self.trim_stop, search_output
         ]
         summary = ",".join(map(str, summary_vars))
@@ -198,7 +197,7 @@ if __name__ == "__main__":
     Primers: str = sys.argv[2]
     Threshold: int = int(sys.argv[3])
 
-    header_list: List[str] = ["ID", "trimmed(0/1)", "start", "stop", "read_len", "trimmed_read_len", "trim_start", "trim_stop", "primer_hit"]
+    header_list: List[str] = ["ID", "trimmed(0/1)", "read_len", "trimmed_read_len", "trim_start", "trim_stop", "primer_hit"]
 
     print(",".join(header_list))
 
