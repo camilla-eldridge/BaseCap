@@ -198,7 +198,7 @@ if __name__ == "__main__":
     Primers: str = sys.argv[2]
     Threshold: int = int(sys.argv[3])
 
-    header_list: List[str] = ["ID", "trimmed(0/1)", "trim_start", "trim_stop", "read_len", "trimmed_read_len", "primer_hit"]
+    header_list: List[str] = ["ID", "trimmed(0/1)", "start", "stop", "read_len", "trimmed_read_len", "trim_start", "trim_stop", "primer_hit"]
 
     print(",".join(header_list))
 
