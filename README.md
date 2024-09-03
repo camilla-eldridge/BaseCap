@@ -85,7 +85,7 @@ The following dependancies are required:
 The pipeline `basecap.sh` uses exonerate to filter out contaminant reads by aligning to a protein reference sequence, tracetuner for basecalling sanger reads, BaseCap.py for QC trimming and generation of trimmed .qual files, CAP3 for merging and capper.py to capitalise the low scoring bases in the final merged contigs. Contigs are finally aligned using mafft.
 
 
-<img src="https://github.com/camilla-eldridge/Basecap/blob/main/workflow.png" width="1000" height="600">
+<img src="https://github.com/camilla-eldridge/Basecap/blob/main/workflow.png" width="1000" height="500">
 
 
 
