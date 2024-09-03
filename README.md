@@ -82,7 +82,14 @@ The following dependancies are required:
 
 
 ## Read QC Workflow  
-The pipeline `basecap.sh` uses tracetuner for basecalling sanger reads, BaseCap.py for QC trimming and generation of trimmed .qual files, and finally CAP3 for merging.
+The pipeline `basecap.sh` uses exonerate to filter out contaminant reads by aligning to a protein reference sequence, tracetuner for basecalling sanger reads, BaseCap.py for QC trimming and generation of trimmed .qual files, CAP3 for merging and capper.py to capitalise the low scoring bases in the final merged contigs. Contigs are finally aligned using mafft.
+
+
+<img src="https://github.com/camilla-eldridge/Basecap/blob/main/workflow.png" width="1000" height="600">
+
+
+
+
 
 **A note on TraceTuner commands**  
 Trace tuner is called with the `-recalln` to reduce the affect of miscalled bases, heterogenous base calls can also be called by ttuner *note the version of BaseCap published here does no include assesing het base calls (please refer to the thesis for further info).  
