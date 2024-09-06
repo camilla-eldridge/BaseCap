@@ -13,6 +13,7 @@
 # Bash script for BaseCap workflow.
 # Input directory containing ab1 chromatogram files, primer sequences, phred threshold 
 # and gene name.
+
 # Notes on usage #
 if [ "$1" == "-h" ]; then
   echo "Usage:  ./baecap.sh  /path/to/ab1_dir/ primer_file  threshold  gene_name protein_reference"
@@ -42,7 +43,7 @@ mkdir -p "$dir"/"$gene_name"
 #call all bases
 /usr/app/BaseCap/tracetuner_3.0.6beta/rel/Linux_64/ttuner -3730 -trim_threshold "$threshold" -id "$ab1_dir" -pd "$dir"/"$gene_name" -recalln -Q
 
-# Process 1:Exonerate and BaseCap
+# Part 1:Exonerate and BaseCap
 { cd "$dir"/"$gene_name" || exit 1
 
 counter=1
@@ -83,7 +84,7 @@ mv *.qual "results"
 
 }
 
-# Process 2: CAP3 merging and final cap.
+# Part 2: CAP3 merging and final cap.
 # move to results dir for read merging and capping of merged reads
 
 { cd "$dir"/"$gene_name"/"results"
