@@ -1,9 +1,7 @@
 # BaseCap 
 ============== 
 
-`BaseCap.py` is a read QC program for sanger reads, created during my PhD at Kingston University (thesis available soon here: https://eprints.kingston.ac.uk/id/eprint/53583/).  <br /> <br /> <br />
-
-
+`BaseCap.py` is a read QC workflow to process sanger sequences.
 
 ## Background
 In both first generation and next generation sequencing methods (NGS) DNA bases are assigned a quality score, known as a Phred score, by base caller programs that analyse the output from sequencing machines. In Sanger sequencing Phred quality scores are assigned based on peak spacing, peak resolution and peak ratios from sequence chromatograms. As a result the quality of a sequence can be assessed by eye when viewing the sequence chromatogram.  
